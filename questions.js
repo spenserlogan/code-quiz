@@ -52,21 +52,21 @@ startTime.addEventListener("click", function () {
 function render(questionIndex) {
     questionsDiv.innerHTML = "";
     ulCreate.innerHTML = "";
-    for(var i = 0; questions.length; i++) {
-        var userQuestions = questions[questionIndex].title;
-        var userChoices = questions[questionIndex].choices;
-        questionsDiv.textContent = userQuestions;
-    }
-
+    var userQuestions = questions[questionIndex].title;
+    var userChoices = questions[questionIndex].choices
+    questionsDiv.textContent = userQuestions;
+    questionsDiv.appendChild(ulCreate);
     userChoices.forEach(function (newItem) {
+        console.log(newItem)
         var listItem = document.createElement("li");
-        listItem.textconent = newItem;
-        questionsDiv.appendChild(ulCreate);
+        listItem.textContent = newItem;
+        
         ulCreate.appendChild(listItem);
         listItem.addEventListener("click", (compare));
     })
 
 }
+
 
 function compare(event) {
     var element = event.target;
@@ -87,7 +87,7 @@ function compare(event) {
 
     if (questionIndex >= questions.length) {
         allDone();
-        createDiv.textConent = "End" + "" + "You got " + score + "/" + questions.length + "Correct!";
+        createDiv.textContent = "You got " + score + "/" + questions.length + "Correct!";
     } else {
         render(questionIndex);
     }
@@ -130,5 +130,12 @@ function allDone() {
     createInput.textContent = "";
 
     questionsDiv.appendChild(createInput);
+
+    var createSubmit = document.createElement("button");
+    createSubmit.setAttribute("type", "submit");
+    createSubmit.setAttribute("id", "submit");
+    createSubmit.textContent = "Submit";
+
+    questionsDiv.appendChild(creatSubmit);
 
 }
