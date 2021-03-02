@@ -27,7 +27,7 @@ var currentTime = document.querySelector("#currentTime");
 var startTime = document.querySelector("#startTime");
 var questionsDiv = document.querySelector("#questionsDiv");
 var questionContainer = document.querySelector("#question-container");
-var secondsLeft = 90;
+var secondsLeft = 50;
 var holdInterval = 0;
 var penalty = 10;
 var ulCreate = document.createElement("ul");
@@ -136,6 +136,34 @@ function allDone() {
     createSubmit.setAttribute("id", "submit");
     createSubmit.textContent = "Submit";
 
-    questionsDiv.appendChild(creatSubmit);
+    questionsDiv.appendChild(createSubmit);
+
+    createSubmit.addEventListener("click", function () {
+        var initials = createInput.value;
+
+        if(initials === null) {
+
+            console.log("No value Entered");
+
+        }else {
+            var finialScore = {
+                initials: initials,
+                score: timeRemaining
+            }
+
+            console.log(finialScore);
+            var allScores = localStorage.getItem("allScores");
+            if (allScores === null) {
+                allScores = [];
+            }else {
+                allScores = JSON.parse(allScores);
+            }
+            allScores.push(finialScore);
+            var newScore = JSON.stringify(allScores);
+            localStorage.setItem("allScores", newScore);
+
+            window.location.replace("./highscore.html");
+        }
+    })
 
 }
