@@ -29,7 +29,7 @@ var questionsDiv = document.querySelector("#questionsDiv");
 var questionContainer = document.querySelector("#question-container");
 var secondsLeft = 50;
 var holdInterval = 0;
-var penalty = 10;
+var penalty = 30;
 var ulCreate = document.createElement("ul");
 var userChoices = [];
 
@@ -37,7 +37,7 @@ startTime.addEventListener("click", function () {
     if (holdInterval === 0) {
         holdInterval = setInterval(function(){
             secondsLeft--;
-            currentTime.textConent = "Time: " + secondsLeft;
+            currentTime.textContent = "Time: " + secondsLeft;
 
             if (secondsLeft <= 0) {
                 clearInterval(holdInterval);
@@ -50,6 +50,7 @@ startTime.addEventListener("click", function () {
 });
 
 function render(questionIndex) {
+    startTime.style.display = "none";
     questionsDiv.innerHTML = "";
     ulCreate.innerHTML = "";
     var userQuestions = questions[questionIndex].title;
@@ -124,7 +125,7 @@ function allDone() {
 
     questionsDiv.appendChild(createLabel);
 
-    var createInput = document.createElement("button");
+    var createInput = document.createElement("input");
     createInput.setAttribute("type", "text");
     createInput.setAttribute("id", "submit");
     createInput.textContent = "";
@@ -143,7 +144,7 @@ function allDone() {
 
         if(initials === null) {
 
-            console.log("No value Entered");
+            console.log("No value entered");
 
         }else {
             var finialScore = {
@@ -152,6 +153,7 @@ function allDone() {
             }
 
             console.log(finialScore);
+
             var allScores = localStorage.getItem("allScores");
             if (allScores === null) {
                 allScores = [];

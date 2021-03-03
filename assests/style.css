@@ -19,6 +19,12 @@ header h1 {
     line-height: 2;
 }
 
+#currentTime {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
 nav {
     display: flex;
     flex-direction: row;
