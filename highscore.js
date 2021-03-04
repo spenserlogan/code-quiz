@@ -5,6 +5,7 @@ var goBack = document.querySelector("#go-back");
 //eventlistener to clear scores on localstorage
 clear.addEventListener("click", function () {
     localStorage.clear ();
+    highScore.textContent = "";
     location.reload;
 });
 //retreives local storage
