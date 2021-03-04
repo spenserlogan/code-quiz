@@ -4,7 +4,11 @@
 }
 
 li {
-    cursor: pointer
+    cursor: pointer;
+    background-color: rgb(201, 190, 190);
+    margin: 5px;
+    border: 1px solid grey;
+    list-style-type: none;
 }
 
 header {
